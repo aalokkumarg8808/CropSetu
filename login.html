@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/jpeg" href="images/logo.jpeg">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CropSetu | Login</title>
+
+    <link rel="stylesheet" href="login.css">
+</head>
+
+<body>
+
+<div class="page">
+
+    <!-- Animated background -->
+    <div class="floating-icons">
+        <span>🌾</span>
+        <span>🌱</span>
+        <span>🍃</span>
+        <span>🌾</span>
+        <span>🌱</span>
+    </div>
+
+
+    <!-- ==========================================
+         SCREEN 1 — LOGIN
+         ========================================== -->
+
+    <div id="loginScreen" class="auth-screen">
+
+        <div class="login-card">
+
+            <div class="logo">
+                🌾
+            </div>
+
+            <h1>Crop<span>Setu</span></h1>
+
+            <p class="tagline">
+                Connecting Farmers to Better Markets
+            </p>
+
+            <div class="welcome">
+                <h2>Welcome Back 👋</h2>
+                <p>
+                    Sign in to continue to your account
+                </p>
+            </div>
+
+            <form id="loginForm">
+
+                <div class="input-group">
+
+                    <label for="loginEmail">
+                        Email Address
+                    </label>
+
+                    <div class="input-box">
+                        <span>✉️</span>
+                        <input
+                            type="email"
+                            id="loginEmail"
+                            placeholder="Enter your email"
+                            autocomplete="email"
+                            required
+                        >
+                    </div>
+
+                </div>
+
+                <div class="input-group">
+
+                    <label for="loginPassword">
+                        Password
+                    </label>
+
+                    <div class="input-box">
+                        <span>🔒</span>
+                        <input
+                            type="password"
+                            id="loginPassword"
+                            placeholder="Enter your password"
+                            autocomplete="current-password"
+                            required
+                        >
+                        <button type="button" id="togglePassword">
+                            👁
+                        </button>
+                    </div>
+
+                </div>
+
+                <div class="login-options">
+
+                    <label class="remember">
+                        <input type="checkbox" id="rememberMe">
+                        Remember me
+                    </label>
+
+                    <button type="button" id="forgotPassword" class="link-button">
+                        Forgot Password?
+                    </button>
+
+                </div>
+
+                <button type="submit" class="login-button">
+                    Sign In
+                    <span>→</span>
+                </button>
+
+                <p id="loginError" class="auth-error"></p>
+
+            </form>
+
+            <div class="create-account">
+                <span>New to CropSetu?</span>
+                <button type="button" id="showSignup" class="link-button">
+                    Create Account
+                </button>
+            </div>
+
+            <div class="secure">
+                🔐 Your information is secure
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ==========================================
+         SCREEN 2 — CREATE ACCOUNT
+         ========================================== -->
+
+    <div id="signupScreen" class="auth-screen hidden">
+
+        <div class="login-card">
+
+            <div class="logo">
+                🌱
+            </div>
+
+            <h1>Crop<span>Setu</span></h1>
+
+            <p class="login-eyebrow">GET STARTED ✨</p>
+
+            <div class="welcome">
+                <h2>Create your account</h2>
+                <p>
+                    Join CropSetu and connect with better markets
+                </p>
+            </div>
+
+            <form id="signupForm">
+
+                <div class="input-group">
+
+                    <label for="signupName">
+                        Full Name
+                    </label>
+
+                    <div class="input-box">
+                        <span>👤</span>
+                        <input
+                            type="text"
+                            id="signupName"
+                            placeholder="Enter your full name"
+                            autocomplete="name"
+                            required
+                        >
+                    </div>
+
+                </div>
+
+                <div class="input-group">
+
+                    <label for="signupEmail">
+                        Email Address
+                    </label>
+
+                    <div class="input-box">
+                        <span>✉️</span>
+                        <input
+                            type="email"
+                            id="signupEmail"
+                            placeholder="Enter your email"
+                            autocomplete="email"
+                            required
+                        >
+                    </div>
+
+                </div>
+
+                <div class="input-group">
+
+                    <label for="signupPassword">
+                        Password
+                    </label>
+
+                    <div class="input-box">
+                        <span>🔒</span>
+                        <input
+                            type="password"
+                            id="signupPassword"
+                            placeholder="Minimum 8 characters"
+                            autocomplete="new-password"
+                            required
+                        >
+                    </div>
+
+                </div>
+
+                <div class="input-group">
+
+                    <label for="signupConfirmPassword">
+                        Confirm Password
+                    </label>
+
+                    <div class="input-box">
+                        <span>🔐</span>
+                        <input
+                            type="password"
+                            id="signupConfirmPassword"
+                            placeholder="Re-enter your password"
+                            autocomplete="new-password"
+                            required
+                        >
+                    </div>
+
+                </div>
+
+                <button type="submit" class="login-button">
+                    Create Account
+                    <span>→</span>
+                </button>
+
+                <p id="signupError" class="auth-error"></p>
+
+            </form>
+
+            <div class="create-account">
+                <span>Already have an account?</span>
+                <button type="button" id="backToLogin" class="link-button">
+                    Sign in
+                </button>
+            </div>
+
+            <div class="secure">
+                🔐 Your information is secure
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ==========================================
+         SCREEN 3 — FORGOT PASSWORD
+         ========================================== -->
+
+    <div id="forgotScreen" class="auth-screen hidden">
+
+        <div class="login-card">
+
+            <div class="logo">
+                🔐
+            </div>
+
+            <h1>Crop<span>Setu</span></h1>
+
+            <p class="login-eyebrow">ACCOUNT RECOVERY 🔑</p>
+
+            <div class="welcome">
+                <h2>Reset your password</h2>
+                <p>
+                    Enter your registered email to create a new password
+                </p>
+            </div>
+
+            <form id="forgotForm">
+
+                <div class="input-group">
+
+                    <label for="forgotEmail">
+                        Email Address
+                    </label>
+
+                    <div class="input-box">
+                        <span>✉️</span>
+                        <input
+                            type="email"
+                            id="forgotEmail"
+                            placeholder="Enter your registered email"
+                            autocomplete="email"
+                            required
+                        >
+                    </div>
+
+                </div>
+
+                <div class="input-group">
+
+                    <label for="newPassword">
+                        New Password
+                    </label>
+
+                    <div class="input-box">
+                        <span>🔒</span>
+                        <input
+                            type="password"
+                            id="newPassword"
+                            placeholder="Minimum 8 characters"
+                            autocomplete="new-password"
+                            required
+                        >
+                    </div>
+
+                </div>
+
+                <div class="input-group">
+
+                    <label for="confirmNewPassword">
+                        Confirm Password
+                    </label>
+
+                    <div class="input-box">
+                        <span>🔐</span>
+                        <input
+                            type="password"
+                            id="confirmNewPassword"
+                            placeholder="Re-enter your password"
+                            autocomplete="new-password"
+                            required
+                        >
+                    </div>
+
+                </div>
+
+                <button type="submit" class="login-button">
+                    Reset Password
+                    <span>→</span>
+                </button>
+
+                <p id="forgotError" class="auth-error"></p>
+
+            </form>
+
+            <div class="create-account">
+                <span>Remember your password?</span>
+                <button type="button" id="backFromForgot" class="link-button">
+                    Sign in
+                </button>
+            </div>
+
+            <div class="secure">
+                🔐 Your information is secure
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Script sabse aakhir mein — tab tak saara HTML ban chuka hota hai -->
+<script src="login.js"></script>
+
+</body>
+</html>

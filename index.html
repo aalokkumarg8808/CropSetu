@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/jpeg" href="images/logo.jpeg">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CropSetu</title>
+
+    <!-- LOGIN GUARD - login nahi hai to seedha login page bhej do -->
+    <script>
+        if (localStorage.getItem("cropSetuLoggedIn") !== "true") {
+            window.location.replace("login.html");
+        }
+    </script>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="stylesheet"
+href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+</head>
+
+<body>
+
+    <header>
+         <div class="header-left">
+
+                       <h1>🌾 CropSetu</h1>
+
+            <p data-i18n="tagline">Connecting Farmers to Better Markets</p>
+
+        </div>
+
+             <div class="header-right">
+                
+            <button id="mobileMenuButton" class="mobile-menu-button">
+              ☰
+            </button>
+
+            <select id="languageSelect" class="language-select">
+                <option value="en">🇬🇧 English</option>
+                <option value="hi">🇮🇳 हिंदी</option>
+                <option value="mr">🇮🇳 मराठी</option>
+            </select>
+
+            <button id="profileButton" class="profile-button">
+                👤 Profile
+            </button>
+
+            <button id="notificationButton" class="notification-button">
+                🔔
+            </button>
+            
+            
+        </div>
+
+</header>
+
+    <main>
+        <!-- Desktop Sidebar -->
+
+        <aside class="sidebar">
+
+            <div class="sidebar-title">
+                🌾 CropSetu
+            </div>
+
+                     <button id="homeButton" class="side-button active">
+    🏠                 <span data-i18n="nav_home">Home</span>
+                    </button>
+
+            <button id="sellCropButton" class="side-button">
+                🌾 <span data-i18n="nav_sell">Sell Crop</span>
+            </button>
+            <button id="seedsButton" class="side-button">
+                🛒 <span data-i18n="nav_seeds">Buy Seeds</span>
+            </button>
+
+        
+            <button id="shopsButton" class="side-button">
+                🏪 <span data-i18n="nav_shops">Nearby Shops</span>
+            </button>
+
+            <button id="buyersButton" class="side-button">
+                🤝 <span data-i18n="nav_buyers">Nearby Buyers</span>
+            </button>
+
+            <button id="farmButton" class="side-button">
+                🗺️ <span data-i18n="nav_lands">My Farming Lands</span>
+            </button>
+        </aside>
+
+        <div class="dashboard-content">
+
+     <section class="location home-section">
+
+    <div class="location-info">
+
+        <span>📍 Your Location</span>
+
+        <strong id="currentLocation">
+            Location not selected
+        </strong>
+
+    </div>
+
+    <button id="locationButton">
+        📍 Set My Location
+    </button>
+
+</section>
+
+               <section class="market-prices home-section">
+
+            <div class="section-heading">
+
+    <div>
+        <h2>Today's Market Prices</h2>
+
+        <small id="marketLastUpdated">
+            Updated just now
+        </small>
+    </div>
+
+       <div class="market-heading-actions">
+
+        <button id="converterButton">
+            ⚖️ Converter
+        </button>
+
+        <button id="refreshMarketButton">
+            🔄 Refresh
+        </button>
+
+        <button id="seeAllPricesButton">
+            See All →
+        </button>
+
+    </div>
+
+</div>
+
+            <div class="price-container">
+
+                <div class="price-card" data-crop="potato">
+                    <div class="price-image" data-emoji="🥔">
+                        <img src="images/potato.jpeg" alt="Potato" loading="lazy" onerror="this.parentElement.classList.add('image-missing'); this.style.display='none';">
+                    </div>
+                    <h3>Potato</h3>
+                    <p>₹2,200 / Quintal</p>
+                    <small>Updated today</small>
+                </div>
+
+                <div class="price-card" data-crop="wheat">
+                    <div class="price-image" data-emoji="🌾">
+                        <img src="images/wheat.jpeg" alt="Wheat" loading="lazy" onerror="this.parentElement.classList.add('image-missing'); this.style.display='none';">
+                    </div>
+                    <h3>Wheat</h3>
+                    <p>₹2,550 / Quintal</p>
+                    <small>Updated today</small>
+                </div>
+
+                <div class="price-card" data-crop="tomato">
+                    <div class="price-image" data-emoji="🍅">
+                        <img src="images/tomato.jpeg" alt="Tomato" loading="lazy" onerror="this.parentElement.classList.add('image-missing'); this.style.display='none';">
+                    </div>
+                    <h3>Tomato</h3>
+                    <p>₹1,800 / Quintal</p>
+                    <small>Updated today</small>
+                </div>
+
+            </div>
+
+        </section>
+<!-- Best Market Price -->
+
+<section class="best-price-section home-section">
+
+    <div class="best-price-header">
+
+        <div>
+            <h2>🔍 Find Best Market Price</h2>
+
+            <p>
+                Apni crop select karke nearby markets ka best bhaav dekhein
+            </p>
+        </div>
+
+    </div>
+
+
+    <div class="best-price-search">
+
+        <div class="crop-select-wrapper">
+
+            <label for="cropSelect">
+                Select Crop
+            </label>
+
+            <select id="cropSelect">
+
+                <option value="">
+                    Select Crop
+                </option>
+
+                <option value="potato">
+                    🥔 Potato
+                </option>
+
+                <option value="wheat">
+                    🌾 Wheat
+                </option>
+
+                <option value="tomato">
+                    🍅 Tomato
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <button id="priceButton">
+            🔎 Find Best Price
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- Existing result container -->
+<div id="priceResult"></div>
+<!-- Price Tracking -->
+<section id="priceTrackingSection" class="analytics-section" style="display:none;">
+
+    <h2>📈 Price ka haal</h2>
+
+    <div class="price-tracking-card">
+
+        <h3 id="trackingCropName">🥔 Potato</h3>
+
+        <div class="price-summary">
+
+            <div>
+                <small>Aaj ka bhaav</small>
+                <strong id="trackingCurrentPrice">
+                    ₹2,200
+                </strong>
+            </div>
+
+            <div>
+                <small>Sabse zyada</small>
+                <strong id="trackingHighestPrice">
+                    ₹2,600
+                </strong>
+            </div>
+
+            <div>
+                <small>Sabse kam</small>
+                <strong id="trackingLowestPrice">
+                    ₹1,900
+                </strong>
+            </div>
+
+        </div>
+
+        <div class="simple-chart">
+
+    <div class="chart-y-label top">₹2600</div>
+    <div class="chart-y-label middle">₹2200</div>
+    <div class="chart-y-label bottom">₹1800</div>
+
+    <svg id="priceChart" viewBox="0 0 700 250" preserveAspectRatio="none">
+
+        <polyline
+            id="priceChartLine"
+            fill="none"
+            stroke="#247a45"
+            stroke-width="4"
+            stroke-linecap="round"
+            stroke-linejoin="round">
+        </polyline>
+
+        <g id="priceChartPoints"></g>
+
+    </svg>
+
+</div>
+
+<div class="chart-dates">
+    <span>7 din pehle</span>
+    <span>Aaj</span>
+</div>
+
+        <p id="priceTrend">
+            📈 Bhaav badh raha hai
+        </p>
+
+    </div>
+
+</section>
+
+    
+<!-- Farmer Profile -->
+<!-- Farmer Profile / Login -->
+<section id="profileSection" style="display:none;">
+
+    <button class="drawer-close" id="closeProfileButton">
+        ✕
+    </button>
+
+    <div class="profile-header">
+        <span class="profile-icon">👤</span>
+
+        <div>
+            <h2 id="profileTitle">
+                Create Farmer Profile
+            </h2>
+
+            <p id="profileSubtitle">
+                Apni details save karke CropSetu use karein
+            </p>
+        </div>
+    </div>
+
+    <!-- First-time profile creation -->
+    <div id="profileCreateBox">
+
+        <div class="profile-input-group">
+            <label>Farmer Name</label>
+            <input
+                id="farmerName"
+                type="text"
+                placeholder="Enter your name"
+            >
+        </div>
+
+        <div class="profile-input-group">
+            <label>Mobile Number</label>
+            <input
+                id="farmerPhone"
+                type="tel"
+                placeholder="Enter mobile number"
+            >
+        </div>
+
+        <div class="profile-input-group">
+            <label>Village / City</label>
+            <input
+                id="farmerVillage"
+                type="text"
+                placeholder="Enter village or city"
+            >
+        </div>
+
+        <div class="profile-input-group">
+            <label>Main Crops</label>
+            <input
+                id="farmerCrops"
+                type="text"
+                placeholder="e.g. Wheat, Rice, Potato"
+            >
+        </div>
+
+        <button id="saveProfileButton" class="profile-primary-button">
+            💾 Create Profile
+        </button>
+
+    </div>
+
+
+    <!-- Returning user login -->
+    <div id="profileLoginBox" style="display:none;">
+
+        <div class="login-welcome">
+            👋 Welcome back, Farmer
+        </div>
+
+        <div class="profile-input-group">
+
+            <label>Mobile Number</label>
+
+            <input
+                id="loginPhone"
+                type="tel"
+                placeholder="Enter registered mobile number"
+            >
+
+        </div>
+
+        <button id="loginProfileButton"
+                class="profile-primary-button">
+
+            🔐 Login
+
+        </button>
+
+        <p id="loginMessage"
+           class="login-message">
+        </p>
+
+    </div>
+
+
+    <!-- Logged-in profile -->
+    <div id="profileDisplay"
+         style="display:none;">
+    </div>
+
+</section>
+<!-- Notifications -->
+<section id="notificationSection" style="display:none;">
+
+    <button class="drawer-close" id="closeNotificationButton">✕</button>
+
+    <h2>🔔 Notifications</h2>
+
+    <div id="notificationContainer"></div>
+
+    <button id="clearNotificationsButton">
+        🗑️ Clear Notifications
+    </button>
+
+</section>
+<!-- Sell Crop -->
+
+<section id="sellCropForm" class="sell-crop-section" style="display:none;">
+
+    <div class="sell-crop-header">
+
+        <div>
+            <h2>🌾 Sell Your Crop</h2>
+
+            <p>
+                Apni fasal list karein aur buyers tak pahunchayein
+            </p>
+        </div>
+
+    </div>
+
+
+    <div class="sell-crop-card">
+
+        <div class="form-field">
+
+            <label for="cropName">
+                Crop Name
+            </label>
+
+            <input
+                id="cropName"
+                type="text"
+                placeholder="e.g. Potato"
+            >
+
+        </div>
+
+
+        <div class="sell-form-row">
+
+            <div class="form-field">
+
+                <label for="cropQuantity">
+                    Quantity
+                </label>
+
+                <div class="input-with-unit">
+
+                  <input
+                        id="cropQuantity"
+                        type="number"
+                        min="1"
+                        placeholder="e.g. 20"
+                    >
+
+                    <span>
+                        Quintal
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="form-field">
+
+                <label for="cropPrice">
+                    Expected Price
+                </label>
+
+                <div class="input-with-unit">
+
+                    <span class="rupee-symbol">
+                        ₹
+                    </span>
+
+                    <input
+                        id="cropPrice"
+                        type="number"
+                        min="1"
+                        placeholder="Price / Quintal"
+                    >
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <button
+            id="listCropButton"
+            class="list-crop-button"
+        >
+            🌾 List My Crop
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- Farming Lands -->
+
+<section
+    id="farmSection"
+    class="farm-section"
+    style="display:none;"
+>
+
+    <div class="farm-header">
+
+        <div>
+
+            <h2>
+                🗺️ My Farming Lands
+            </h2>
+
+            <p>
+                Your registered agricultural land records
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- Farmer Land Search -->
+
+    <div class="land-search-card">
+
+        <div class="land-search-info">
+
+            <h3>
+                🔎 Find My Registered Lands
+            </h3>
+
+            <p>
+                Search using your registered mobile number
+            </p>
+
+        </div>
+
+
+        <div class="land-search-row">
+
+            <input
+                id="landSearchPhone"
+                type="tel"
+                placeholder="Enter mobile number"
+            >
+
+            <button id="searchLandButton">
+                🔍 Find My Lands
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- Land Summary -->
+
+    <div class="land-summary">
+
+        <div class="land-summary-card">
+
+            <small>
+                Total Lands
+            </small>
+
+            <strong id="totalLandCount">
+                0
+            </strong>
+
+        </div>
+
+
+        <div class="land-summary-card">
+
+            <small>
+                Total Area
+            </small>
+
+            <strong id="totalLandArea">
+                0 acres
+            </strong>
+
+        </div>
+
+
+        <div class="land-summary-card">
+
+            <small>
+                Status
+            </small>
+
+            <strong class="land-status">
+                Verified
+            </strong>
+
+        </div>
+
+    </div>
+
+   <!-- Land Map -->
+
+<div class="farm-map-card">
+
+    <div class="farm-map-header">
+
+        <div>
+            <h3>
+                📍 Land Map
+            </h3>
+
+            <small>
+                View and mark your farming land boundaries
+            </small>
+        </div>
+
+        <span class="map-status">
+            🟢 Ready
+        </span>
+
+    </div>
+
+
+    <div id="farmMap"></div>
+
+
+    <!-- Land Drawing Controls -->
+
+    <div class="land-controls">
+
+        <div class="land-control-info">
+
+            <strong>
+                ✏️ Land Boundary
+            </strong>
+
+            <small>
+                Map par points select karke land boundary banayein
+            </small>
+
+        </div>
+
+        <div class="land-control-actions">
+
+            <button
+                id="startDrawButton"
+                class="land-control-button primary-land-button"
+            >
+                ✏️ Start Drawing
+            </button>
+
+
+            <button
+                id="finishDrawButton"
+                class="land-control-button finish-land-button"
+                style="display:none;"
+            >
+                ✅ Finish Land
+            </button>
+
+        </div>
+
+
+        <div class="land-save-row">
+
+            <input
+                id="landName"
+                placeholder="Land name e.g. Farm 1"
+            >
+
+            <button
+                id="saveLandButton"
+                class="land-control-button save-land-button"
+            >
+                💾 Save Land
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- Registered Lands -->
+
+<div class="registered-land-list">
+
+    <div class="registered-land-heading">
+
+        <div>
+
+            <h3>
+                🌾 Registered Lands
+            </h3>
+
+            <p>
+                Land records linked to your account
+            </p>
+
+        </div>
+
+    </div>
+
+
+   <div id="savedLands">
+
+    <div class="land-empty">
+        🗺️ Search your mobile number to view lands
+    </div>
+
+</div>
+</div>
+
+</section>
+
+<!-- Seeds -->
+<section id="seedsSection" style="display:none;">
+
+    <h2>🛒 Seeds & Farming Tools</h2>
+
+    <div id="seedsContainer"></div>
+
+    <h3>🛍️ Your Cart</h3>
+
+    <div id="cartContainer"></div>
+
+    <p id="cartTotal"></p>
+
+    <button id="placeOrderButton">
+        ✅ Place Order
+    </button>
+    <h3>📦 Your Orders</h3>
+
+    <div id="ordersContainer"></div>
+
+
+    <!-- Order History -->
+
+    <div class="order-history-block">
+
+        <button id="orderHistoryButton" class="order-history-button">
+
+            <span>📜 See Order History</span>
+
+            <span id="orderHistoryCount" class="order-history-count">
+                0
+            </span>
+
+            <span id="orderHistoryArrow" class="order-history-arrow">
+                ▾
+            </span>
+
+        </button>
+
+
+        <div id="orderHistoryBox" class="order-history-box" style="display:none;">
+
+            <div id="orderHistoryContainer"></div>
+
+            <button id="clearHistoryButton" class="clear-history-button">
+                🗑️ Clear History
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+<!-- Buyers -->
+<section id="buyersSection" style="display:none;">
+
+    <h2>🗺️ Nearby Buyers</h2>
+
+    <div id="buyersMap"></div>
+    <div id="buyersContainer"></div>
+
+</section>
+
+<!-- Listed Crops -->
+
+<section id="listedCropsSection" class="listed-crops-section home-section">
+
+    <div class="listed-crops-heading">
+
+        <div>
+            <h2>📦 Your Listed Crops</h2>
+
+            <p>
+                Crops currently available for buyers
+            </p>
+        </div>
+
+        <button id="viewAllListedCropsButton">
+            View All →
+        </button>
+
+    </div>
+
+
+    <div id="listedCrops">
+
+        <div class="listed-empty">
+            🌾 No crops listed yet
+        </div>
+
+    </div>
+
+</section>
+
+<!-- Shops -->
+<section class="shops" id="shopsSection" style="display:none;">
+
+    <h2>🏪 Nearby Agricultural Shops</h2>
+
+    <div id="shopsMap"></div>
+    <div id="shopsContainer"></div>
+
+</section>
+        </div>
+    </main>
+
+    <!-- Unit Converter -->
+    <div id="converterOverlay" class="converter-overlay" style="display:none;">
+
+        <div class="converter-box">
+
+            <button class="converter-close" id="closeConverterButton">
+                ✕
+            </button>
+
+            <div class="converter-header">
+
+                <span class="converter-icon">⚖️</span>
+
+                <div>
+                    <h2>Unit Converter</h2>
+                    <p>Kg, quintal, tonne aur maund mein convert karein</p>
+                </div>
+
+            </div>
+
+            <div class="converter-field">
+                <label for="converterValue">Value</label>
+                <input id="converterValue" type="number" value="1" min="0">
+            </div>
+
+            <div class="converter-row">
+
+                <div class="converter-field">
+                    <label for="converterFrom">From</label>
+                    <select id="converterFrom"></select>
+                </div>
+
+                <button id="converterSwapButton" class="converter-swap">
+                    ⇅
+                </button>
+
+                <div class="converter-field">
+                    <label for="converterTo">To</label>
+                    <select id="converterTo"></select>
+                </div>
+
+            </div>
+
+            <div class="converter-result">
+                <small>Result</small>
+                <strong id="converterResult">—</strong>
+            </div>
+
+            <div class="converter-table">
+
+                <small>QUICK REFERENCE</small>
+
+                <ul>
+                    <li>1 Quintal = 100 kg</li>
+                    <li>1 Tonne = 10 Quintal = 1000 kg</li>
+                    <li>1 Maund = 40 kg (ilaake ke hisaab se badal sakta hai)</li>
+                    <li>1 Bora / Bag = 50 kg (ilaake ke hisaab se badal sakta hai)</li>
+                </ul>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <footer>
+        <p>© 2026 CropSetu</p>
+    </footer>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,4530 @@
+/* =========================================================
+   CROPSETU — CLEAN UI
+   ========================================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #f7fcf8 0%, #e8f6ec 30%, #cfead7 65%, #a9d9b8 100%);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: #eef6fa;
+    color: #26352a;
+}
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+header {
+    position: sticky;
+    top: 0;
+    z-index: 1100;
+
+    height: 72px;
+    padding: 0 30px;
+    background: #247a45;
+    color: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.header-left h1 {
+    margin: 0;
+    font-size: 28px;
+}
+
+.header-left p {
+    margin: 0;
+    font-size: 14px;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.profile-button {
+    padding: 8px 14px;
+    border: none;
+    border-radius: 20px;
+
+    background: white;
+    color: #247a45;
+
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.notification-button {
+    width: 36px;
+    height: 36px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: white;
+    color: #247a45;
+
+    cursor: pointer;
+    font-size: 17px;
+}
+
+/* =========================================================
+   SIDEBAR
+   ========================================================= */
+
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 72px;
+
+    width: 190px;
+    height: calc(100vh - 72px);
+
+    padding: 18px 12px;
+
+    background: white;
+    border-right: 1px solid #e1e7e9;
+
+    z-index: 1000;
+}
+
+.sidebar-title {
+    padding: 10px;
+    margin-bottom: 15px;
+
+    color: #247a45;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.side-button {
+    width: 100%;
+
+    padding: 11px 12px;
+    margin-bottom: 6px;
+
+    border: none;
+    border-radius: 8px;
+
+    background: transparent;
+    color: #26352a;
+
+    text-align: left;
+
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.side-button:hover,
+.side-button.active {
+    background: #eaf5ee;
+    color: #247a45;
+}
+
+.side-button.active {
+    font-weight: bold;
+}
+
+/* =========================================================
+   MAIN
+   ========================================================= */
+
+main {
+    width: 100%;
+}
+
+.dashboard-content {
+    width: calc(100% - 190px);
+    max-width: 1200px;
+
+    margin-left: 190px;
+    padding: 26px 30px;
+}
+
+/* =========================================================
+   LOCATION
+   ========================================================= */
+
+.location {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+
+    padding: 16px 18px;
+    margin-bottom: 24px;
+
+    background: white;
+    border: 1px solid #e3e9e4;
+    border-radius: 12px;
+}
+
+.location-info {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.location-info span {
+    font-size: 12px;
+    color: #6d776f;
+}
+
+.location strong,
+.location-info strong {
+    color: #247a45;
+    font-size: 14px;
+}
+
+#locationButton {
+    padding: 9px 13px;
+
+    border: none;
+    border-radius: 8px;
+
+    background: #247a45;
+    color: white;
+
+    font-size: 12px;
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+#locationButton:hover {
+    background: #1c6338;
+}
+
+/* =========================================================
+   SECTION HEADINGS
+   ========================================================= */
+
+.section-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+
+    margin-bottom: 14px;
+}
+
+.section-heading h2 {
+    margin: 0;
+    font-size: 19px;
+    color: #26352a;
+}
+
+.section-heading > div:first-child {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+#marketLastUpdated {
+    color: #777;
+    font-size: 11px;
+}
+
+/* =========================================================
+   MARKET PRICES
+   ========================================================= */
+
+.market-prices {
+    margin-bottom: 24px;
+}
+
+.market-heading-actions {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.market-heading-actions button {
+    padding: 7px 11px;
+
+    border: 1px solid #dbe5de;
+    border-radius: 7px;
+
+    background: white;
+    color: #247a45;
+
+    font-size: 11px;
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+.market-heading-actions button:hover {
+    background: #f2f7f3;
+}
+
+#seeAllPricesButton {
+    border: none;
+    background: transparent;
+    color: #247a45;
+    font-weight: bold;
+}
+
+#refreshMarketButton.refreshing {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+.price-container {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.price-card {
+    min-width: 0;
+
+    padding: 15px;
+
+    background: white;
+    border: 1px solid #e1e8e3;
+    border-radius: 11px;
+
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+
+    transition:
+        transform 0.15s ease,
+        box-shadow 0.15s ease;
+}
+
+.price-card:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 5px 15px rgba(0, 0, 0, 0.07);
+}
+
+.price-card h3 {
+    margin: 0 0 10px;
+
+    font-size: 14px;
+    color: #36443a;
+}
+
+.price-card p {
+    margin: 0 0 5px;
+
+    font-size: 20px;
+    font-weight: 700;
+
+    color: #247a45;
+}
+
+.price-card small {
+    color: #8b948e;
+    font-size: 10px;
+}
+
+/* =========================================================
+   FIND BEST MARKET PRICE
+   ========================================================= */
+
+.market-search {
+    padding: 18px;
+    margin-bottom: 22px;
+
+    background: white;
+    border: 1px solid #e1e8e3;
+    border-radius: 12px;
+
+    box-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.market-search h2 {
+    margin: 0 0 13px;
+
+    font-size: 16px;
+    color: #26352a;
+}
+
+.market-search select {
+    width: 100%;
+
+    padding: 10px 12px;
+
+    border: 1px solid #d6e0d8;
+    border-radius: 8px;
+
+    background: #fafcfb;
+    color: #36443a;
+
+    font-size: 12px;
+}
+
+.market-search select:focus {
+    outline: none;
+    border-color: #247a45;
+}
+
+.market-search button,
+#priceButton {
+    width: 100%;
+
+    margin-top: 9px;
+    padding: 10px;
+
+    border: none;
+    border-radius: 8px;
+
+    background: #247a45;
+    color: white;
+
+    font-size: 12px;
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+.market-search button:hover,
+#priceButton:hover {
+    background: #1c6338;
+}
+
+/* =========================================================
+   PRICE RESULT
+   ========================================================= */
+
+#priceResult {
+    margin-top: 15px;
+}
+
+.best-market-card {
+    padding: 20px;
+    margin-top: 15px;
+
+    background: white;
+    border: 1px solid #dfe9e2;
+    border-radius: 14px;
+
+    box-shadow:
+        0 3px 10px rgba(0, 0, 0, 0.05);
+}
+
+.recommended-badge {
+    display: inline-block;
+
+    padding: 6px 10px;
+    margin-bottom: 12px;
+
+    background: #e7f5eb;
+    color: #247a45;
+
+    border-radius: 20px;
+
+    font-size: 11px;
+    font-weight: bold;
+}
+
+.best-market-title h2 {
+    margin: 0;
+    font-size: 22px;
+}
+
+.market-location {
+    margin: 5px 0 0;
+
+    color: #777;
+    font-size: 13px;
+}
+
+.market-info-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 10px;
+    margin-top: 18px;
+}
+
+.market-info-item {
+    padding: 13px;
+
+    background: #f5f8f5;
+    border-radius: 9px;
+}
+
+.market-info-item small {
+    display: block;
+
+    margin-bottom: 5px;
+
+    color: #777;
+    font-size: 11px;
+}
+
+.market-info-item strong {
+    color: #26352a;
+    font-size: 17px;
+}
+
+.market-main-price {
+    color: #247a45 !important;
+    font-size: 21px !important;
+}
+
+.net-return {
+    padding: 15px;
+    margin-top: 12px;
+
+    background: #eaf6ee;
+    border-radius: 10px;
+}
+
+.net-return small {
+    display: block;
+
+    margin-bottom: 4px;
+
+    color: #52605a;
+    font-size: 12px;
+}
+
+.net-return strong {
+    color: #247a45;
+    font-size: 24px;
+}
+
+.market-note {
+    margin-top: 12px;
+
+    color: #777;
+    font-size: 11px;
+}
+
+/* =========================================================
+   MARKET COMPARISON
+   ========================================================= */
+
+.comparison-heading {
+    margin: 25px 0 12px;
+}
+
+.comparison-heading h3 {
+    margin: 0;
+    font-size: 20px;
+}
+
+.comparison-heading p {
+    margin: 4px 0 0;
+
+    color: #777;
+    font-size: 12px;
+}
+
+.market-comparison-card {
+    padding: 17px;
+    margin-bottom: 10px;
+
+    background: white;
+    border: 1px solid #e1e9e3;
+    border-radius: 12px;
+
+    box-shadow:
+        0 2px 7px rgba(0, 0, 0, 0.04);
+}
+
+.market-comparison-card.recommended-comparison {
+    border: 2px solid #247a45;
+    background: #fbfffc;
+}
+
+.comparison-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 14px;
+}
+
+.comparison-top h3 {
+    margin: 0;
+
+    color: #247a45;
+    font-size: 17px;
+}
+
+.comparison-badge {
+    display: inline-block;
+
+    padding: 4px 8px;
+    margin-top: 5px;
+
+    background: #e7f5eb;
+    color: #247a45;
+
+    border-radius: 20px;
+
+    font-size: 10px;
+    font-weight: bold;
+}
+
+.comparison-info {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 9px;
+}
+
+.comparison-item {
+    padding: 11px;
+
+    background: #f5f8f5;
+    border-radius: 9px;
+}
+
+.comparison-item small {
+    display: block;
+
+    margin-bottom: 5px;
+
+    color: #777;
+    font-size: 10px;
+}
+
+.comparison-item strong {
+    display: block;
+
+    color: #26352a;
+    font-size: 15px;
+}
+
+.comparison-item span {
+    color: #777;
+    font-size: 10px;
+}
+
+.comparison-item .comparison-price {
+    color: #247a45;
+    font-size: 18px;
+}
+
+.comparison-item.net {
+    background: #eaf6ee;
+}
+
+.comparison-item.net strong {
+    color: #247a45;
+}
+
+/* =========================================================
+   PRICE TRACKING
+   ========================================================= */
+
+.analytics-section {
+    margin-top: 20px;
+}
+
+.analytics-section > h2 {
+    margin: 0 0 12px;
+
+    font-size: 20px;
+}
+
+.price-tracking-card {
+    padding: 20px;
+
+    background: white;
+    border: 1px solid #e1e9e3;
+    border-radius: 14px;
+
+    box-shadow:
+        0 3px 10px rgba(0, 0, 0, 0.05);
+}
+
+.price-tracking-card > h3 {
+    margin: 0 0 16px;
+
+    color: #247a45;
+    font-size: 19px;
+}
+
+.price-summary {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.price-summary > div {
+    padding: 13px;
+
+    background: #f5f8f5;
+    border-radius: 10px;
+}
+
+.price-summary small {
+    display: block;
+
+    margin-bottom: 5px;
+
+    color: #777;
+    font-size: 11px;
+}
+
+.price-summary strong {
+    display: block;
+
+    color: #26352a;
+    font-size: 19px;
+}
+
+#trackingCurrentPrice {
+    color: #247a45;
+}
+
+.simple-chart {
+    position: relative;
+
+    height: 250px;
+    margin-top: 10px;
+
+    border: 1px solid #edf1ed;
+    border-radius: 10px;
+
+    background: #f7faf7;
+
+    overflow: hidden;
+}
+
+#priceChart {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.chart-y-label {
+    position: absolute;
+    left: 8px;
+    z-index: 2;
+
+    padding: 2px 4px;
+
+    background: rgba(255, 255, 255, 0.85);
+    color: #888;
+
+    border-radius: 4px;
+
+    font-size: 10px;
+}
+
+.chart-y-label.top {
+    top: 8px;
+}
+
+.chart-y-label.middle {
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.chart-y-label.bottom {
+    bottom: 8px;
+}
+
+.chart-dates {
+    display: flex;
+    justify-content: space-between;
+
+    margin-top: 7px;
+    padding: 0 5px;
+
+    color: #777;
+    font-size: 11px;
+}
+
+#priceTrend {
+    margin: 15px 0 0;
+    padding: 10px 12px;
+
+    background: #eaf6ee;
+    color: #247a45;
+
+    border-radius: 8px;
+
+    font-size: 13px;
+    font-weight: bold;
+}
+
+/* =========================================================
+   SELL CROP
+   ========================================================= */
+
+#sellCropForm {
+    margin-top: 15px;
+    padding: 20px;
+
+    background: white;
+    border: 1px solid #e1e9e3;
+    border-radius: 14px;
+
+    box-shadow:
+        0 3px 10px rgba(0, 0, 0, 0.05);
+}
+
+#sellCropForm input {
+    padding: 11px 12px;
+    margin: 5px 0;
+
+    border: 1px solid #d5ddd7;
+    border-radius: 8px;
+
+    font-size: 14px;
+}
+
+#sellCropForm input:focus {
+    outline: none;
+    border-color: #247a45;
+}
+
+#listCropButton {
+    padding: 11px 18px;
+    margin-top: 8px;
+
+    background: #247a45;
+    color: white;
+
+    border: none;
+    border-radius: 8px;
+
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#listCropButton:hover {
+    background: #1b6036;
+}
+
+/* =========================================================
+   LISTED CROPS
+   ========================================================= */
+
+#listedCropsSection {
+    margin-top: 22px;
+    padding: 18px;
+
+    background: white;
+    border: 1px solid #e1e9e3;
+    border-radius: 12px;
+
+    box-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+
+#viewAllListedCropsButton {
+    border: none;
+    background: transparent;
+
+    color: #247a45;
+
+    font-size: 12px;
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+.listed-empty {
+    padding: 20px;
+
+    background: #f4f8f3;
+    border: 1px dashed #cfd9d1;
+    border-radius: 9px;
+
+    color: #777;
+
+    text-align: center;
+    font-size: 13px;
+}
+
+/* =========================================================
+   COMMON CARDS
+   ========================================================= */
+
+.shop-card,
+.buyer-card {
+    padding: 17px;
+    margin-bottom: 10px;
+
+    background: white;
+    border: 1px solid #e1e9e3;
+    border-radius: 12px;
+
+    box-shadow:
+        0 2px 7px rgba(0, 0, 0, 0.04);
+}
+
+.shop-card h3 {
+    color: #247a45;
+}
+
+.shop-card button {
+    padding: 10px 18px;
+
+    background: #247a45;
+    color: white;
+
+    border: none;
+    border-radius: 8px;
+
+    cursor: pointer;
+}
+
+/* =========================================================
+   BUYERS
+   ========================================================= */
+
+.buyers-heading {
+    margin: 25px 0 12px;
+}
+
+.buyers-heading h3 {
+    margin: 0;
+    font-size: 20px;
+}
+
+.buyers-heading p {
+    margin: 4px 0 0;
+
+    color: #777;
+    font-size: 12px;
+}
+
+.buyer-name {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.buyer-icon {
+    width: 40px;
+    height: 40px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #eaf5ee;
+    border-radius: 10px;
+
+    font-size: 21px;
+}
+
+.buyer-name h3 {
+    margin: 0;
+
+    color: #247a45;
+    font-size: 17px;
+}
+
+.buyer-name small {
+    display: block;
+
+    margin-top: 3px;
+
+    color: #777;
+    font-size: 11px;
+}
+
+.buyer-details {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 10px;
+    margin: 14px 0 12px;
+}
+
+.buyer-detail {
+    padding: 11px;
+
+    background: #f5f8f5;
+    border-radius: 9px;
+}
+
+.buyer-detail small {
+    display: block;
+
+    margin-bottom: 5px;
+
+    color: #777;
+    font-size: 10px;
+}
+
+.buyer-detail strong {
+    color: #26352a;
+    font-size: 13px;
+}
+
+.contact-buyer-button {
+    width: 100%;
+
+    padding: 10px;
+
+    background: #247a45;
+    color: white;
+
+    border: none;
+    border-radius: 8px;
+
+    font-size: 13px;
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+/* =========================================================
+   MAPS
+   ========================================================= */
+
+#farmMap {
+    width: 100%;
+    height: 360px;
+
+    margin-top: 15px;
+
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+#shopsMap,
+#buyersMap {
+    height: 300px;
+
+    margin-top: 15px;
+
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+/* =========================================================
+   FARMING LANDS
+   ========================================================= */
+
+#farmSection {
+    margin-top: 20px;
+}
+
+.land-controls {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+
+    gap: 8px;
+
+    margin-top: 12px;
+    padding: 12px;
+
+    background: white;
+    border: 1px solid #e1e9e3;
+    border-radius: 10px;
+}
+
+.land-controls button {
+    padding: 9px 13px;
+
+    background: #247a45;
+    color: white;
+
+    border: none;
+    border-radius: 8px;
+
+    font-size: 12px;
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+.land-controls button:hover {
+    background: #1b6036;
+}
+
+#landName {
+    flex: 1;
+    min-width: 160px;
+
+    padding: 9px 10px;
+
+    border: 1px solid #d5ddd7;
+    border-radius: 8px;
+
+    font-size: 12px;
+}
+
+#landName:focus {
+    outline: none;
+    border-color: #247a45;
+}
+
+.registered-land-card {
+    padding: 16px;
+    margin-bottom: 10px;
+
+    background: white;
+    border: 1px solid #dfe8e1;
+    border-radius: 12px;
+
+    box-shadow:
+        0 3px 10px rgba(0, 0, 0, 0.04);
+}
+
+.registered-land-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 14px;
+}
+
+.registered-land-top h3 {
+    margin: 0;
+    font-size: 16px;
+}
+
+.verified-badge {
+    display: inline-block;
+
+    padding: 4px 8px;
+    margin-top: 5px;
+
+    background: #e7f4eb;
+    color: #247a45;
+
+    border-radius: 20px;
+
+    font-size: 10px;
+    font-weight: bold;
+}
+
+.land-details {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 8px;
+    margin-bottom: 14px;
+}
+
+.land-detail {
+    padding: 10px;
+
+    background: #f6f9f6;
+    border-radius: 8px;
+}
+
+.land-detail small {
+    display: block;
+
+    margin-bottom: 4px;
+
+    color: #777;
+    font-size: 9px;
+}
+
+.land-detail strong {
+    color: #26352a;
+    font-size: 11px;
+}
+
+.land-card-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.land-card-actions button {
+    padding: 8px 12px;
+
+    border: none;
+    border-radius: 7px;
+
+    font-size: 11px;
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+.view-land-button {
+    background: #247a45;
+    color: white;
+}
+
+.delete-land-button {
+    background: #f4eeee;
+    color: #b33a3a;
+}
+
+/* =========================================================
+   PROFILE / NOTIFICATIONS
+   ========================================================= */
+
+#profileSection,
+#notificationSection {
+    position: fixed;
+
+    top: 0;
+    right: 0;
+
+    width: 360px;
+    max-width: 85vw;
+    height: 100vh;
+
+    padding: 25px;
+
+    background: white;
+
+    z-index: 2000;
+
+    overflow-y: auto;
+
+    box-shadow:
+        -5px 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.drawer-close {
+    position: absolute;
+
+    top: 15px;
+    right: 15px;
+
+    width: 35px;
+    height: 35px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: none;
+    border-radius: 50%;
+
+    background: #f1f1f1;
+    color: #333;
+
+    font-size: 20px;
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+.drawer-close:hover {
+    background: #247a45;
+    color: white;
+}
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+footer {
+    margin-left: 190px;
+    padding: 20px;
+
+    color: #777;
+    text-align: center;
+}
+
+
+
+/* =========================================================
+   COMPACT DASHBOARD FIX
+   ========================================================= */
+
+.dashboard-content {
+    padding: 18px 22px;
+    max-width: 1150px;
+}
+
+/* Location compact */
+.location {
+    padding: 11px 14px;
+    margin-bottom: 16px;
+}
+
+.location-info {
+    gap: 2px;
+}
+
+/* Section headings */
+.section-heading {
+    margin-bottom: 9px;
+}
+
+.section-heading h2 {
+    font-size: 17px;
+}
+
+/* Market cards */
+.market-prices {
+    margin-bottom: 17px;
+}
+
+.price-container {
+    gap: 9px;
+}
+
+.price-card {
+    padding: 11px 13px;
+    border-radius: 9px;
+}
+
+.price-card h3 {
+    margin-bottom: 6px;
+    font-size: 13px;
+}
+
+.price-card p {
+    margin-bottom: 3px;
+    font-size: 17px;
+}
+
+.price-card small {
+    font-size: 9px;
+}
+
+/* Market search */
+.market-search {
+    padding: 13px 15px;
+    margin-bottom: 16px;
+    border-radius: 10px;
+}
+
+.market-search h2 {
+    margin-bottom: 9px;
+    font-size: 15px;
+}
+
+.market-search select {
+    padding: 8px 10px;
+}
+
+.market-search button,
+#priceButton {
+    margin-top: 7px;
+    padding: 8px;
+}
+
+/* Price result */
+.best-market-card {
+    padding: 15px;
+    margin-top: 12px;
+}
+
+.best-market-title h2 {
+    font-size: 19px;
+}
+
+.market-info-grid {
+    gap: 7px;
+    margin-top: 12px;
+}
+
+.market-info-item {
+    padding: 10px;
+}
+
+.market-info-item strong {
+    font-size: 15px;
+}
+
+.net-return {
+    padding: 11px;
+    margin-top: 9px;
+}
+
+.net-return strong {
+    font-size: 20px;
+}
+
+/* Comparison */
+.comparison-heading {
+    margin: 18px 0 9px;
+}
+
+.comparison-heading h3 {
+    font-size: 17px;
+}
+
+.market-comparison-card {
+    padding: 12px;
+    margin-bottom: 7px;
+}
+
+.comparison-top {
+    margin-bottom: 9px;
+}
+
+.comparison-top h3 {
+    font-size: 15px;
+}
+
+.comparison-info {
+    gap: 6px;
+}
+
+.comparison-item {
+    padding: 8px;
+}
+
+.comparison-item strong {
+    font-size: 13px;
+}
+
+.comparison-item .comparison-price {
+    font-size: 15px;
+}
+
+/* Price tracking */
+.analytics-section {
+    margin-top: 16px;
+}
+
+.analytics-section > h2 {
+    margin-bottom: 9px;
+    font-size: 17px;
+}
+
+.price-tracking-card {
+    padding: 15px;
+}
+
+.price-tracking-card > h3 {
+    margin-bottom: 11px;
+    font-size: 17px;
+}
+
+.price-summary {
+    gap: 7px;
+    margin-bottom: 13px;
+}
+
+.price-summary > div {
+    padding: 9px;
+}
+
+.price-summary strong {
+    font-size: 16px;
+}
+
+.simple-chart {
+    height: 210px;
+}
+
+/* Listed crops */
+#listedCropsSection {
+    margin-top: 16px;
+    padding: 13px;
+}
+
+.listed-crops-heading {
+    margin-bottom: 8px;
+}
+
+.listed-crops-heading h2 {
+    font-size: 17px;
+}
+
+/* Maps */
+#farmMap {
+    height: 320px;
+}
+
+#shopsMap,
+#buyersMap {
+    height: 260px;
+}
+
+/* Land controls */
+.land-controls {
+    padding: 9px;
+    margin-top: 8px;
+}
+
+/* Generic cards */
+.shop-card,
+.buyer-card {
+    padding: 12px;
+    margin-bottom: 7px;
+}
+
+/* Footer */
+footer {
+    padding: 12px;
+}
+
+/* =========================================================
+   EXTRA COMPACT DESKTOP
+   ========================================================= */
+
+@media (min-width: 701px) {
+
+    .dashboard-content > section {
+        margin-bottom: 16px;
+    }
+
+    .price-container {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .price-card {
+        min-height: 105px;
+    }
+
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+    .dashboard-content {
+        padding: 14px 11px;
+    }
+
+    .location {
+        padding: 10px 12px;
+        margin-bottom: 13px;
+    }
+
+    .price-card {
+        min-height: auto;
+    }
+
+    .market-search {
+        padding: 12px;
+    }
+
+    .simple-chart {
+        height: 190px;
+    }
+}/* =========================================================
+   FINAL DESKTOP COMPACT FIX
+   ========================================================= */
+
+@media (min-width: 701px) {
+
+    /* Main content */
+    .dashboard-content {
+        max-width: 1180px;
+        padding: 18px 24px;
+    }
+
+    /* Location */
+    .location {
+        padding: 12px 16px;
+        margin-bottom: 16px;
+    }
+
+    /* Market prices */
+    .market-prices {
+        margin-bottom: 18px;
+    }
+
+    .price-card {
+        min-height: 105px;
+        padding: 12px 14px;
+    }
+
+    /* ================================
+       FIND BEST PRICE
+       ================================ */
+
+    .market-search {
+        padding: 16px;
+        margin-bottom: 16px;
+    }
+
+    .market-search h2 {
+        margin-bottom: 5px;
+        font-size: 18px;
+    }
+
+    .market-search select {
+        width: 220px;
+        height: 40px;
+        margin-right: 8px;
+    }
+
+    .market-search button,
+    #priceButton {
+        width: auto;
+        min-width: 145px;
+        height: 40px;
+        margin-top: 0;
+        padding: 0 16px;
+    }
+
+    /* Search controls should stay in one row */
+    .market-search select,
+    .market-search button {
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    /* ================================
+       BEST MARKET
+       ================================ */
+
+    .best-market-card {
+        padding: 16px;
+        margin-top: 12px;
+    }
+
+    .market-info-grid {
+        gap: 8px;
+        margin-top: 12px;
+    }
+
+    .market-info-item {
+        padding: 10px;
+    }
+
+    .net-return {
+        padding: 12px;
+        margin-top: 9px;
+    }
+
+    .net-return strong {
+        font-size: 21px;
+    }
+
+    /* ================================
+       MARKET COMPARISON
+       ================================ */
+
+    .comparison-heading {
+        margin: 17px 0 8px;
+    }
+
+    .market-comparison-card {
+        padding: 11px 13px;
+        margin-bottom: 7px;
+    }
+
+    .comparison-top {
+        margin-bottom: 8px;
+    }
+
+    .comparison-info {
+        gap: 7px;
+    }
+
+    .comparison-item {
+        padding: 8px 9px;
+    }
+
+    /* ================================
+       BUYERS
+       ================================ */
+
+    .buyers-heading {
+        margin: 18px 0 8px;
+    }
+
+    .shop-card,
+    .buyer-card {
+        padding: 12px 14px;
+        margin-bottom: 7px;
+    }
+
+    .buyer-details {
+        margin: 9px 0;
+        gap: 7px;
+    }
+
+    .buyer-detail {
+        padding: 8px 10px;
+    }
+
+    .contact-buyer-button {
+        padding: 8px;
+    }
+
+    /* ================================
+       PRICE GRAPH
+       ================================ */
+
+    .analytics-section {
+        margin-top: 16px;
+    }
+
+    .price-tracking-card {
+        padding: 15px;
+    }
+
+    .price-summary {
+        margin-bottom: 10px;
+    }
+
+    .simple-chart {
+        height: 190px;
+    }
+}/* =========================================================
+   PREMIUM SELECT CROP DROPDOWN
+   ========================================================= */
+
+.market-search select,
+#cropSelect {
+    width: 220px;
+    height: 42px;
+
+    padding: 0 38px 0 13px;
+
+    border: 1.5px solid #c9dbce;
+    border-radius: 9px;
+
+    background-color: #f8fbf9;
+    color: #26352a;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    outline: none;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background-color 0.2s ease;
+}
+
+/* Hover */
+.market-search select:hover,
+#cropSelect:hover {
+    border-color: #247a45;
+    background-color: #f2f8f4;
+}
+
+/* Click / Focus */
+.market-search select:focus,
+#cropSelect:focus {
+    border-color: #247a45;
+
+    box-shadow:
+        0 0 0 3px rgba(36, 122, 69, 0.12);
+
+    background-color: white;
+}
+
+/* Options */
+.market-search select option,
+#cropSelect option {
+    padding: 10px;
+    background: white;
+    color: #26352a;
+    font-weight: 500;
+}
+
+/* Find Best Price button */
+.market-search #priceButton {
+    height: 42px;
+
+    margin-left: 4px;
+
+    padding: 0 17px;
+
+    border-radius: 9px;
+
+    background: #247a45;
+    color: white;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    box-shadow:
+        0 2px 5px rgba(36, 122, 69, 0.18);
+
+    transition:
+        background-color 0.2s ease,
+        transform 0.15s ease,
+        box-shadow 0.2s ease;
+}
+
+.market-search #priceButton:hover {
+    background: #1c6338;
+
+    box-shadow:
+        0 4px 9px rgba(36, 122, 69, 0.22);
+
+    transform: translateY(-1px);
+}
+
+.market-search #priceButton:active {
+    transform: translateY(0);
+}
+
+/* Label */
+.market-search label {
+    color: #536158;
+    font-size: 12px;
+    font-weight: 600;
+}
+/* =========================================================
+   FARMER PROFILE — CLEAN UI
+   ========================================================= */
+
+#profileSection {
+    width: 390px;
+    max-width: 92vw;
+
+    padding: 28px 24px;
+
+    background: #ffffff;
+}
+
+/* Header */
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+
+    margin-bottom: 24px;
+    padding-right: 35px;
+}
+
+.profile-icon {
+    width: 46px;
+    height: 46px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #eaf5ee;
+    border-radius: 12px;
+
+    font-size: 24px;
+}
+
+.profile-header h2 {
+    margin: 0;
+
+    color: #26352a;
+    font-size: 21px;
+}
+
+.profile-header p {
+    margin: 4px 0 0;
+
+    color: #7a847d;
+    font-size: 11px;
+    line-height: 1.4;
+}
+
+
+/* Input groups */
+
+.profile-input-group {
+    margin-bottom: 14px;
+}
+
+.profile-input-group label {
+    display: block;
+
+    margin-bottom: 6px;
+
+    color: #4e5b52;
+
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.profile-input-group input {
+    width: 100%;
+
+    height: 42px;
+
+    padding: 0 12px;
+
+    border: 1px solid #d8e2da;
+    border-radius: 9px;
+
+    background: #f9fbfa;
+    color: #26352a;
+
+    font-size: 13px;
+
+    outline: none;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+.profile-input-group input:hover {
+    border-color: #a9c6b2;
+}
+
+.profile-input-group input:focus {
+    background: white;
+
+    border-color: #247a45;
+
+    box-shadow:
+        0 0 0 3px rgba(36, 122, 69, 0.10);
+}
+
+
+/* Main profile button */
+
+.profile-primary-button {
+    width: 100%;
+
+    height: 43px;
+
+    margin-top: 5px;
+
+    border: none;
+    border-radius: 9px;
+
+    background: #247a45;
+    color: white;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.15s ease;
+}
+
+.profile-primary-button:hover {
+    background: #1c6338;
+
+    transform: translateY(-1px);
+}
+
+.profile-primary-button:active {
+    transform: translateY(0);
+}
+
+
+/* Login welcome */
+
+.login-welcome {
+    padding: 13px;
+
+    margin-bottom: 18px;
+
+    background: #eaf5ee;
+    color: #247a45;
+
+    border-radius: 9px;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    text-align: center;
+}
+
+.login-message {
+    min-height: 18px;
+
+    margin: 10px 0 0;
+
+    color: #c0392b;
+
+    text-align: center;
+    font-size: 11px;
+}
+
+
+/* Logged-in profile card */
+
+.profile-info-card {
+    padding: 18px;
+
+    background: #f8fbf9;
+
+    border: 1px solid #dfe9e2;
+    border-radius: 12px;
+}
+
+.profile-main-name {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    padding-bottom: 14px;
+    margin-bottom: 14px;
+
+    border-bottom: 1px solid #e1e8e3;
+}
+
+.profile-main-avatar {
+    width: 42px;
+    height: 42px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #eaf5ee;
+
+    border-radius: 10px;
+
+    font-size: 22px;
+}
+
+.profile-main-name h3 {
+    margin: 0;
+
+    color: #247a45;
+    font-size: 17px;
+}
+
+.profile-main-name small {
+    display: block;
+
+    margin-top: 3px;
+
+    color: #7b857e;
+    font-size: 10px;
+}
+
+.profile-detail-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 9px 0;
+
+    color: #36443a;
+
+    font-size: 13px;
+}
+
+.profile-detail-icon {
+    width: 28px;
+    height: 28px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: white;
+
+    border-radius: 7px;
+
+    font-size: 14px;
+}
+
+.profile-detail-row strong {
+    font-weight: 500;
+}
+
+.profile-saved {
+    margin-top: 14px;
+    padding: 9px;
+
+    background: #eaf6ee;
+    color: #247a45;
+
+    border-radius: 7px;
+
+    text-align: center;
+
+    font-size: 11px;
+    font-weight: 700;
+}
+
+
+/* Logout */
+
+.profile-logout-button {
+    width: 100%;
+
+    height: 39px;
+
+    margin-top: 12px;
+
+    border: 1px solid #e1caca;
+    border-radius: 8px;
+
+    background: #fff7f7;
+    color: #b33a3a;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+.profile-logout-button:hover {
+    background: #fcecec;
+}
+
+
+/* Mobile */
+
+@media (max-width: 700px) {
+
+    #profileSection {
+        width: 100%;
+        max-width: 100%;
+        padding: 24px 18px;
+    }
+
+}
+/* =========================================================
+   SELL CROP — FIXED UI
+   ========================================================= */
+
+.sell-crop-section {
+    margin-top: 16px;
+}
+
+.sell-crop-header {
+    margin-bottom: 12px;
+}
+
+.sell-crop-header h2 {
+    margin: 0;
+    font-size: 20px;
+}
+
+.sell-crop-header p {
+    margin: 4px 0 0;
+    color: #777;
+    font-size: 12px;
+}
+
+.sell-crop-card {
+    padding: 20px;
+    background: white;
+    border: 1px solid #e1e9e3;
+    border-radius: 14px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+}
+
+.form-field {
+    margin-bottom: 13px;
+}
+
+.form-field label {
+    display: block;
+    margin-bottom: 6px;
+    color: #4e5b52;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.form-field input {
+    width: 100%;
+    height: 42px;
+    padding: 0 12px;
+    border: 1px solid #d5ddd7;
+    border-radius: 9px;
+    background: #f9fbfa;
+    font-size: 13px;
+}
+
+.form-field input:focus {
+    outline: none;
+    border-color: #247a45;
+    background: white;
+    box-shadow: 0 0 0 3px rgba(36,122,69,0.10);
+}
+
+.sell-form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.input-with-unit {
+    display: flex;
+    align-items: center;
+    height: 42px;
+    border: 1px solid #d5ddd7;
+    border-radius: 9px;
+    background: #f9fbfa;
+    overflow: hidden;
+}
+
+.input-with-unit:focus-within {
+    border-color: #247a45;
+    background: white;
+}
+
+.input-with-unit input {
+    border: none;
+    background: transparent;
+    flex: 1;
+    min-width: 0;
+}
+
+.input-with-unit input:focus {
+    box-shadow: none;
+}
+
+.input-with-unit span {
+    padding: 0 10px;
+    color: #777;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.input-with-unit .rupee-symbol {
+    color: #247a45;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.list-crop-button {
+    width: 100%;
+    height: 43px;
+    margin-top: 4px;
+    border: none;
+    border-radius: 9px;
+    background: #247a45;
+    color: white;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.list-crop-button:hover {
+    background: #1c6338;
+}
+
+@media (max-width: 700px) {
+
+    .sell-form-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+}
+/* =========================================================
+   BUY SEEDS - COMPACT UI
+   ========================================================= */
+
+#seedsSection {
+    margin-top: 16px;
+}
+
+#seedsSection > h2 {
+    margin-bottom: 12px;
+    font-size: 20px;
+}
+
+#seedsContainer {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-bottom: 18px;
+}
+
+#seedsContainer .shop-card {
+    margin: 0;
+    padding: 14px;
+    border-radius: 11px;
+    border: 1px solid #e0e8e2;
+    background: #fff;
+}
+
+#seedsContainer .shop-card h3 {
+    margin: 0 0 7px;
+    font-size: 15px;
+}
+
+#seedsContainer .shop-card p {
+    margin: 0 0 10px;
+    color: #247a45;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+#seedsContainer .shop-card button {
+    width: 100%;
+    padding: 8px;
+    border: none;
+    border-radius: 7px;
+    background: #247a45;
+    color: white;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+#seedsSection > h3 {
+    margin: 15px 0 8px;
+    font-size: 16px;
+}
+
+#cartContainer .shop-card,
+#ordersContainer .shop-card {
+    padding: 11px 13px;
+    margin-bottom: 7px;
+}
+
+#cartContainer .shop-card button {
+    padding: 6px 10px;
+    border: 1px solid #e2caca;
+    border-radius: 6px;
+    background: #fff7f7;
+    color: #b33a3a;
+    cursor: pointer;
+}
+
+#cartTotal {
+    margin: 8px 0;
+    font-size: 15px;
+    font-weight: 700;
+    color: #247a45;
+}
+
+#placeOrderButton {
+    width: auto;
+    min-width: 140px;
+    height: 38px;
+
+    padding: 0 20px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    border: none;
+    border-radius: 8px;
+
+    background: #247a45;
+    color: white;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+#placeOrderButton:hover {
+    background: #1c6338;
+}
+
+@media (max-width: 700px) {
+    #seedsContainer {
+        grid-template-columns: 1fr;
+    }
+}
+/* =========================================================
+   ORDER TRACKING
+   ========================================================= */
+
+.order-card {
+    padding: 14px;
+}
+
+.order-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.order-header h3 {
+    margin: 0 0 5px;
+    font-size: 15px;
+}
+
+.order-header p {
+    margin: 0;
+    font-size: 12px;
+    color: #68736c;
+}
+
+.order-status {
+    padding: 5px 9px;
+    border-radius: 7px;
+    background: #eaf5ee;
+    color: #247a45;
+    font-size: 10px;
+    white-space: nowrap;
+}
+
+.order-tracking {
+    display: flex;
+    justify-content: space-between;
+    gap: 5px;
+    margin: 16px 0;
+    position: relative;
+}
+
+.order-track-step {
+    flex: 1;
+    text-align: center;
+    color: #a0aaa3;
+    font-size: 9px;
+    position: relative;
+}
+
+.order-track-dot {
+    width: 25px;
+    height: 25px;
+    margin: 0 auto 5px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+    background: #e7ece9;
+    color: #7d8780;
+
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.order-track-step.done {
+    color: #247a45;
+}
+
+.order-track-step.done .order-track-dot {
+    background: #247a45;
+    color: white;
+}
+
+.track-order-button {
+    width: 100%;
+    height: 38px;
+
+    border: none;
+    border-radius: 8px;
+
+    background: #247a45;
+    color: white;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+.track-order-button:hover {
+    background: #1c6338;
+}
+
+.delivered-message {
+    margin: 8px 0 0;
+    padding: 9px;
+
+    border-radius: 7px;
+
+    background: #eaf5ee;
+    color: #247a45;
+
+    text-align: center;
+
+    font-size: 11px;
+    font-weight: 700;
+}
+/* =========================
+   SEEDS - COMPACT ADD BUTTON
+   ========================= */
+
+#seedsContainer .shop-card button {
+    width: auto;
+    min-width: 130px;
+    height: 36px;
+    padding: 0 18px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    border: none;
+    border-radius: 8px;
+
+    background: #33a45e;
+    color: white;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+#seedsContainer .shop-card button:hover {
+    background: #1c6338;
+}
+/* =========================================
+   LISTED CROPS - CLEAN COMPACT UI
+   ========================================= */
+
+#listedCropsSection {
+    margin-top: 16px;
+    padding: 14px;
+
+    background: #ffffff;
+    border: 1px solid #e1e9e3;
+    border-radius: 12px;
+
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+
+.listed-crops-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 10px;
+}
+
+.listed-crops-heading h2 {
+    margin: 0;
+    font-size: 18px;
+    color: #26352a;
+}
+
+.listed-crops-heading p {
+    margin: 3px 0 0;
+    font-size: 11px;
+    color: #7a847d;
+}
+
+#viewAllListedCropsButton {
+    width: auto !important;
+    min-width: 80px !important;
+    height: 32px !important;
+
+    padding: 0 12px !important;
+    margin: 0 !important;
+
+    border: 1px solid #d8e8dd !important;
+    border-radius: 8px !important;
+
+    background: #edf6f0 !important;
+    color: #247a45 !important;
+
+    font-size: 11px !important;
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+/* Crop list */
+
+#listedCrops {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* Actual crop card */
+
+#listedCrops .shop-card {
+    display: grid;
+
+    grid-template-columns: 1.2fr 1fr 1fr auto;
+    align-items: center;
+
+    gap: 10px;
+
+    min-height: 68px;
+
+    margin: 0 !important;
+    padding: 10px 12px !important;
+
+    background: #f8fbf9;
+    border: 1px solid #e1e9e3;
+    border-radius: 9px;
+
+    box-shadow: none;
+}
+
+/* Crop name */
+
+#listedCrops .shop-card h3 {
+    margin: 0;
+
+    color: #247a45;
+    font-size: 15px;
+}
+
+/* Quantity + price */
+
+#listedCrops .shop-card p {
+    margin: 0;
+
+    padding: 7px 9px;
+
+    background: #ffffff;
+    border: 1px solid #e5ece7;
+    border-radius: 7px;
+
+    color: #68736c;
+    font-size: 10px;
+
+    white-space: nowrap;
+}
+
+#listedCrops .shop-card p strong {
+    color: #26352a;
+    font-size: 12px;
+}
+
+/* Delete */
+
+#listedCrops .shop-card button {
+    width: auto !important;
+    min-width: 72px !important;
+    height: 31px !important;
+
+    margin: 0 !important;
+    padding: 0 11px !important;
+
+    border: 1px solid #e6caca !important;
+    border-radius: 7px !important;
+
+    background: #fff7f7 !important;
+    color: #b33a3a !important;
+
+    font-size: 10px !important;
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+#listedCrops .shop-card button:hover {
+    background: #ffeaea !important;
+}
+
+/* Mobile */
+
+@media (max-width: 700px) {
+
+    #listedCrops .shop-card {
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+    }
+
+    #listedCrops .shop-card h3 {
+        grid-column: 1 / -1;
+    }
+
+    #listedCrops .shop-card button {
+        justify-self: start;
+    }
+}
+/* =========================================================
+   MY FARMING LANDS — FINAL UI
+   ========================================================= */
+
+.farm-section {
+    margin-top: 18px;
+}
+
+.farm-header {
+    margin-bottom: 14px;
+}
+
+.farm-header h2 {
+    margin: 0;
+    font-size: 22px;
+    color: #26352a;
+}
+
+.farm-header p {
+    margin: 4px 0 0;
+    color: #7a847d;
+    font-size: 12px;
+}
+
+/* Search card */
+
+.land-search-card {
+    padding: 15px 16px;
+    margin-bottom: 12px;
+
+    background: white;
+    border: 1px solid #e1e9e3;
+    border-radius: 12px;
+
+    box-shadow: 0 2px 7px rgba(0,0,0,0.04);
+}
+
+.land-search-info h3 {
+    margin: 0;
+    font-size: 16px;
+    color: #26352a;
+}
+
+.land-search-info p {
+    margin: 4px 0 12px;
+    color: #7a847d;
+    font-size: 11px;
+}
+
+.land-search-row {
+    display: flex;
+    gap: 8px;
+}
+
+.land-search-row input {
+    flex: 1;
+    height: 38px;
+
+    padding: 0 11px;
+
+    border: 1px solid #d5ddd7;
+    border-radius: 8px;
+
+    background: #f9fbfa;
+    font-size: 12px;
+}
+
+.land-search-row input:focus {
+    outline: none;
+    border-color: #247a45;
+    background: white;
+}
+
+#searchLandButton {
+    height: 38px;
+
+    padding: 0 14px;
+
+    border: none;
+    border-radius: 8px;
+
+    background: #247a45;
+    color: white;
+
+    font-size: 11px;
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+/* Summary */
+
+.land-summary {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 9px;
+
+    margin-bottom: 12px;
+}
+
+.land-summary-card {
+    padding: 12px;
+
+    background: white;
+    border: 1px solid #e1e9e3;
+    border-radius: 10px;
+}
+
+.land-summary-card small {
+    display: block;
+    margin-bottom: 4px;
+
+    color: #7a847d;
+    font-size: 10px;
+}
+
+.land-summary-card strong {
+    color: #247a45;
+    font-size: 17px;
+}
+
+.land-status {
+    color: #247a45 !important;
+}
+
+/* Map card */
+
+.farm-map-card {
+    padding: 14px;
+
+    background: white;
+    border: 1px solid #e1e9e3;
+    border-radius: 12px;
+
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+
+.farm-map-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 12px;
+    margin-bottom: 10px;
+}
+
+.farm-map-header h3 {
+    margin: 0;
+    font-size: 17px;
+    color: #26352a;
+}
+
+.farm-map-header small {
+    display: block;
+    margin-top: 3px;
+
+    color: #7a847d;
+    font-size: 10px;
+}
+
+.map-status {
+    padding: 5px 9px;
+
+    background: #eaf6ee;
+    color: #247a45;
+
+    border-radius: 20px;
+
+    font-size: 10px;
+    font-weight: 700;
+
+    white-space: nowrap;
+}
+
+/* Map */
+
+#farmMap {
+    width: 100%;
+    height: 330px;
+
+    margin-top: 0;
+
+    border-radius: 9px;
+    overflow: hidden;
+}
+
+/* Drawing controls */
+
+.farm-map-card .land-controls {
+    margin-top: 10px;
+    padding: 10px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 12px;
+
+    background: #f7faf8;
+    border: 1px solid #e2e9e4;
+    border-radius: 9px;
+}
+
+.land-control-info {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.land-control-info strong {
+    color: #247a45;
+    font-size: 12px;
+}
+
+.land-control-info small {
+    color: #7a847d;
+    font-size: 10px;
+}
+
+.land-control-actions {
+    display: flex;
+    gap: 7px;
+}
+
+.land-control-button {
+    height: 32px;
+
+    padding: 0 11px;
+
+    border: none;
+    border-radius: 7px;
+
+    font-size: 10px;
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+.start-draw-button {
+    background: #247a45;
+    color: white;
+}
+
+.finish-draw-button {
+    background: #eaf6ee;
+    color: #247a45;
+}
+
+.save-land-button {
+    background: #247a45;
+    color: white;
+}
+
+/* Registered lands */
+
+.registered-land-list {
+    margin-top: 14px;
+}
+
+.registered-land-heading {
+    margin-bottom: 8px;
+}
+
+.registered-land-heading h3 {
+    margin: 0;
+    font-size: 17px;
+    color: #26352a;
+}
+
+.registered-land-heading p {
+    margin: 3px 0 0;
+    color: #7a847d;
+    font-size: 10px;
+}
+
+.land-empty {
+    padding: 15px;
+
+    background: white;
+    border: 1px dashed #cfd9d1;
+    border-radius: 9px;
+
+    color: #7a847d;
+    text-align: center;
+    font-size: 11px;
+}
+
+/* Mobile */
+
+@media (max-width: 700px) {
+
+    .land-search-row {
+        flex-direction: column;
+    }
+
+    #searchLandButton {
+        width: 100%;
+    }
+
+    .land-summary {
+        grid-template-columns: 1fr;
+    }
+
+    .farm-map-header {
+        align-items: flex-start;
+    }
+
+    .farm-map-card .land-controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .land-control-actions {
+        flex-wrap: wrap;
+    }
+
+    .land-control-button {
+        flex: 1;
+    }
+
+    #farmMap {
+        height: 280px;
+    }
+}
+/* =========================================================
+   LISTED CROPS - FORCE FINAL UI
+   ========================================================= */
+
+#listedCropsSection {
+    width: 100%;
+    padding: 14px !important;
+    margin-top: 16px !important;
+    background: #fff !important;
+    border: 1px solid #e1e9e3 !important;
+    border-radius: 12px !important;
+    box-sizing: border-box !important;
+}
+
+#listedCropsSection .listed-crops-heading {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    width: 100% !important;
+    margin-bottom: 10px !important;
+}
+
+#listedCropsSection .listed-crops-heading h2 {
+    margin: 0 !important;
+    font-size: 18px !important;
+}
+
+#listedCropsSection .listed-crops-heading p {
+    margin: 3px 0 0 !important;
+    font-size: 11px !important;
+    color: #7a847d !important;
+}
+
+#listedCropsSection #viewAllListedCropsButton {
+    display: block !important;
+    width: auto !important;
+    min-width: 80px !important;
+    height: 32px !important;
+    margin: 0 !important;
+    padding: 0 12px !important;
+
+    border: 1px solid #d8e8dd !important;
+    border-radius: 8px !important;
+
+    background: #edf6f0 !important;
+    color: #247a45 !important;
+
+    font-size: 11px !important;
+    font-weight: 700 !important;
+}
+
+/* List container */
+
+#listedCropsSection #listedCrops {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 8px !important;
+    width: 100% !important;
+}
+
+.listed-crop-card {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background: #f8fbf9;
+    border: 1px solid #e1e9e3;
+    border-radius: 9px;
+    padding: 14px;
+    margin-bottom: 12px;
+}
+
+.listed-crop-name {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.listed-crop-icon {
+    font-size: 20px;
+}
+
+.listed-crop-name h3 {
+    margin: 0;
+    color: #247a45;
+    font-size: 16px;
+}
+
+.listed-crop-details {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.listed-crop-detail {
+    background: white;
+    border: 1px solid #e5ece7;
+    border-radius: 7px;
+    padding: 7px 10px;
+}
+
+.listed-crop-detail small {
+    display: block;
+    color: #68736c;
+    font-size: 10px;
+}
+
+.listed-crop-detail strong {
+    color: #26352a;
+    font-size: 13px;
+}
+
+.delete-listed-crop-button {
+    align-self: flex-start;
+    padding: 8px 14px;
+    border: 1px solid #e6caca;
+    border-radius: 7px;
+    background: #fff7f7;
+    color: #b33a3a;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+}   
+
+#toastContainer {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 5000;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+}
+
+.custom-toast {
+    background: #26352a;
+    color: white;
+    padding: 12px 22px;
+    border-radius: 30px;
+    font-size: 14px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    opacity: 1;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    max-width: 85vw;
+    text-align: center;
+    white-space: pre-line;
+}
+
+.custom-toast.toast-hide {
+    opacity: 0;
+    transform: translateY(10px);
+}
+.language-select {
+    padding: 8px 12px;
+    border-radius: 20px;
+    border: none;
+    background: white;
+    color: #247a45;
+    font-weight: bold;
+    cursor: pointer;
+}
+/* =========================================================
+   FIND BEST MARKET PRICE — SECTION UI
+   ========================================================= */
+
+.best-price-section {
+    padding: 16px;
+    margin-bottom: 16px;
+
+    background: white;
+    border: 1px solid #e1e8e3;
+    border-radius: 12px;
+
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.best-price-header h2 {
+    margin: 0;
+    font-size: 18px;
+    color: #26352a;
+}
+
+.best-price-header p {
+    margin: 4px 0 14px;
+    color: #7a847d;
+    font-size: 12px;
+}
+
+.best-price-search {
+    display: flex;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.crop-select-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.crop-select-wrapper label {
+    color: #4e5b52;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.best-price-section #priceButton {
+    width: auto;
+    min-width: 150px;
+    height: 42px;
+
+    margin-top: 0;
+    padding: 0 18px;
+
+    border-radius: 9px;
+}
+
+@media (max-width: 700px) {
+
+    .best-price-search {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .best-price-section #cropSelect,
+    .best-price-section #priceButton {
+        width: 100%;
+    }
+}
+
+/* =========================================================
+   CUSTOM CONFIRM DIALOG
+   ========================================================= */
+
+.confirm-overlay {
+    position: fixed;
+
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    z-index: 6000;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    background: rgba(20, 30, 24, 0.55);
+
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.confirm-overlay.confirm-show {
+    opacity: 1;
+}
+
+.confirm-box {
+    width: 100%;
+    max-width: 340px;
+
+    padding: 24px 22px 18px;
+
+    background: white;
+    border-radius: 16px;
+
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+
+    text-align: center;
+
+    transform: translateY(12px) scale(0.97);
+    transition: transform 0.2s ease;
+}
+
+.confirm-overlay.confirm-show .confirm-box {
+    transform: translateY(0) scale(1);
+}
+
+.confirm-icon {
+    width: 52px;
+    height: 52px;
+    margin: 0 auto 14px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #eaf5ee;
+    border-radius: 50%;
+
+    font-size: 26px;
+}
+
+.confirm-message {
+    margin: 0 0 20px;
+
+    color: #26352a;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.45;
+}
+
+.confirm-actions {
+    display: flex;
+    gap: 9px;
+}
+
+.confirm-actions button {
+    flex: 1;
+    height: 42px;
+
+    border: none;
+    border-radius: 9px;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: background 0.2s ease;
+}
+
+.confirm-cancel-button {
+    background: #f1f4f2;
+    color: #52605a;
+}
+
+.confirm-cancel-button:hover {
+    background: #e5eae7;
+}
+
+.confirm-ok-button {
+    background: #247a45;
+    color: white;
+}
+
+.confirm-ok-button:hover {
+    background: #1c6338;
+}
+
+/* Delete wale confirm ke liye laal version */
+
+.confirm-box.confirm-danger .confirm-icon {
+    background: #fdeeee;
+}
+
+.confirm-box.confirm-danger .confirm-ok-button {
+    background: #b33a3a;
+}
+
+.confirm-box.confirm-danger .confirm-ok-button:hover {
+    background: #952f2f;
+}
+
+/* =========================================================
+   UNIT CONVERTER
+   ========================================================= */
+
+.converter-overlay {
+    position: fixed;
+
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    z-index: 6000;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    background: rgba(20, 30, 24, 0.55);
+
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.converter-overlay.converter-show {
+    opacity: 1;
+}
+
+.converter-box {
+    position: relative;
+
+    width: 100%;
+    max-width: 380px;
+
+    padding: 24px 22px 20px;
+
+    background: white;
+    border-radius: 16px;
+
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+
+    transform: translateY(12px) scale(0.97);
+    transition: transform 0.2s ease;
+}
+
+.converter-overlay.converter-show .converter-box {
+    transform: translateY(0) scale(1);
+}
+
+.converter-close {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+
+    width: 32px;
+    height: 32px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: none;
+    border-radius: 50%;
+
+    background: #f1f1f1;
+    color: #333;
+
+    font-size: 17px;
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+.converter-close:hover {
+    background: #247a45;
+    color: white;
+}
+
+.converter-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    margin-bottom: 18px;
+    padding-right: 30px;
+}
+
+.converter-icon {
+    width: 44px;
+    height: 44px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #eaf5ee;
+    border-radius: 12px;
+
+    font-size: 22px;
+}
+
+.converter-header h2 {
+    margin: 0;
+    font-size: 19px;
+    color: #26352a;
+}
+
+.converter-header p {
+    margin: 3px 0 0;
+    color: #7a847d;
+    font-size: 11px;
+}
+
+.converter-field {
+    flex: 1;
+    min-width: 0;
+    margin-bottom: 13px;
+}
+
+.converter-field label {
+    display: block;
+    margin-bottom: 6px;
+
+    color: #4e5b52;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.converter-field input,
+.converter-field select {
+    width: 100%;
+    height: 42px;
+
+    padding: 0 11px;
+
+    border: 1px solid #d8e2da;
+    border-radius: 9px;
+
+    background: #f9fbfa;
+    color: #26352a;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    outline: none;
+}
+
+.converter-field input:focus,
+.converter-field select:focus {
+    background: white;
+    border-color: #247a45;
+
+    box-shadow: 0 0 0 3px rgba(36, 122, 69, 0.10);
+}
+
+.converter-row {
+    display: flex;
+    align-items: flex-end;
+    gap: 8px;
+}
+
+.converter-swap {
+    width: 38px;
+    height: 42px;
+
+    margin-bottom: 13px;
+
+    flex-shrink: 0;
+
+    border: 1px solid #d8e2da;
+    border-radius: 9px;
+
+    background: #eaf5ee;
+    color: #247a45;
+
+    font-size: 16px;
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+.converter-swap:hover {
+    background: #247a45;
+    color: white;
+}
+
+.converter-result {
+    padding: 14px;
+
+    background: #eaf6ee;
+    border-radius: 10px;
+
+    text-align: center;
+}
+
+.converter-result small {
+    display: block;
+    margin-bottom: 5px;
+
+    color: #52605a;
+    font-size: 11px;
+}
+
+.converter-result strong {
+    color: #247a45;
+    font-size: 18px;
+}
+
+.converter-table {
+    margin-top: 14px;
+    padding-top: 12px;
+
+    border-top: 1px solid #eaefeb;
+}
+
+.converter-table small {
+    color: #7a847d;
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.converter-table ul {
+    margin: 7px 0 0;
+    padding-left: 18px;
+
+    color: #52605a;
+    font-size: 11px;
+    line-height: 1.7;
+}
+
+@media (max-width: 700px) {
+
+    .converter-row {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .converter-swap {
+        width: 100%;
+        margin-bottom: 13px;
+    }
+}
+/* =========================================================
+   DRAWER SLIDE ANIMATION
+   ========================================================= */
+
+#profileSection,
+#notificationSection {
+    transform: translateX(100%);
+    transition: transform 0.25s ease;
+}
+
+#profileSection.drawer-open,
+#notificationSection.drawer-open {
+    transform: translateX(0);
+}
+
+/* =========================================================
+   ORDER HISTORY
+   ========================================================= */
+
+.order-history-block {
+    margin-top: 20px;
+}
+
+.order-history-button {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 13px 16px;
+
+    background: #ffffff;
+    border: 1px solid #dfe6e0;
+    border-radius: 12px;
+
+    font-size: 14px;
+    font-weight: 600;
+    color: #247a45;
+
+    cursor: pointer;
+
+    transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.order-history-button:hover {
+    background: #f2f8f4;
+    border-color: #247a45;
+}
+
+.order-history-button.history-open {
+    background: #eaf5ee;
+    border-color: #247a45;
+
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.order-history-count {
+    min-width: 22px;
+    padding: 2px 7px;
+
+    background: #247a45;
+    color: #ffffff;
+
+    border-radius: 20px;
+
+    font-size: 11px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.order-history-arrow {
+    margin-left: auto;
+    font-size: 12px;
+}
+
+.order-history-box {
+    padding: 14px;
+
+    background: #f7faf8;
+
+    border: 1px solid #247a45;
+    border-top: none;
+
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+}
+
+/* History ke cards ko bhi wahi compact padding mile
+   jo #ordersContainer ke cards ko milta hai */
+#orderHistoryContainer .shop-card {
+    padding: 11px 13px;
+    margin-bottom: 7px;
+}
+
+.order-card-done {
+    border-left: 4px solid #247a45;
+}
+
+.order-history-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+
+    margin-top: 10px;
+    padding-top: 10px;
+
+    border-top: 1px dashed #cfe0d5;
+
+    font-size: 12px;
+    color: #5c6b60;
+}
+
+.order-total-line {
+    margin: 9px 0 0;
+
+    font-size: 13px;
+    font-weight: 700;
+    color: #247a45;
+}
+
+.clear-history-button {
+    width: 100%;
+
+    margin-top: 10px;
+    padding: 10px;
+
+    background: #f4eeee;
+    color: #b33a3a;
+
+    border: none;
+    border-radius: 9px;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+.clear-history-button:hover {
+    background: #eadede;
+}
+
+@media (max-width: 700px) {
+
+    .order-history-meta {
+        flex-direction: column;
+        gap: 5px;
+    }
+}
+/* =========================================================
+   PRICE CARD IMAGES  —  poori image, text uske upar
+   ========================================================= */
+
+.price-card {
+    position: relative;
+    overflow: hidden;
+
+    min-height: 230px;
+
+    /* Text ko card ke neeche bhejo */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+
+    padding: 16px;
+
+    border: none;
+    border-radius: 12px;
+
+    /* Dark placeholder, taaki white text load hone tak bhi dikhe */
+    background: #2f5d43;
+}
+
+/* Image poore card par faili hui */
+.price-card .price-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    margin: 0;
+    border-radius: 0;
+    overflow: hidden;
+
+    background: #2f5d43;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 0;
+    z-index: 0;
+}
+
+.price-card .price-image img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+    display: block;
+
+    transition: transform 0.4s ease;
+}
+
+.price-card:hover .price-image img {
+    transform: scale(1.07);
+}
+
+/* Neeche se dark gradient — isse white text photo par bhi saaf padhega */
+.price-card .price-image::before {
+    content: "";
+
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.85) 0%,
+        rgba(0, 0, 0, 0.45) 45%,
+        rgba(0, 0, 0, 0.05) 80%
+    );
+
+    z-index: 1;
+}
+
+/* Text image ke UPAR */
+.price-card h3,
+.price-card p,
+.price-card small {
+    position: relative;
+    z-index: 2;
+
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+}
+
+.price-card h3 {
+    margin: 0 0 6px;
+
+    font-size: 15px;
+    color: #ffffff;
+}
+
+.price-card p {
+    margin: 0 0 4px;
+
+    font-size: 21px;
+    font-weight: 700;
+
+    color: #ffffff;
+}
+
+.price-card small {
+    font-size: 10px;
+    color: rgba(255, 255, 255, 0.82);
+}
+
+/* Photo na mile to emoji dikhao */
+.price-card .price-image.image-missing::after {
+    content: attr(data-emoji);
+
+    font-size: 64px;
+    line-height: 1;
+
+    /* Gradient ke upar */
+    position: relative;
+    z-index: 2;
+}
+
+@media (max-width: 700px) {
+
+    .price-card {
+        min-height: 200px;
+    }
+}
+
+
+
+
+/* =========================================================
+   LOGOUT BUTTON - 2026-08-26
+   File ke aakhir mein hai taaki purane rules na haraye
+   ========================================================= */
+
+.logout-button {
+    padding: 8px 14px;
+
+    border: 1px solid rgba(255, 255, 255, 0.55);
+    border-radius: 20px;
+
+    background: rgba(255, 255, 255, 0.15);
+    color: white;
+
+    font-weight: bold;
+    cursor: pointer;
+
+    transition: 0.25s;
+}
+
+.logout-button:hover {
+    background: white;
+    color: #247a45;
+}
+
+
+
+/* =========================================================
+   PROFILE STATS - 2026-08-26
+   ========================================================= */
+
+.profile-stats {
+    display: flex;
+    gap: 8px;
+
+    padding-bottom: 14px;
+    margin-bottom: 8px;
+
+    border-bottom: 1px solid #e1e8e3;
+}
+
+.profile-stat {
+    flex: 1;
+
+    padding: 10px 6px;
+
+    background: white;
+
+    border: 1px solid #e5ece7;
+    border-radius: 9px;
+
+    text-align: center;
+}
+
+.profile-stat strong {
+    display: block;
+
+    color: #247a45;
+
+    font-size: 19px;
+    line-height: 1.2;
+}
+
+.profile-stat span {
+    display: block;
+
+    margin-top: 3px;
+
+    color: #7c8a80;
+
+    font-size: 10px;
+    font-weight: 700;
+
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+}
+
+/* Edit button info card se chipke nahi */
+#profileDisplay .profile-primary-button {
+    margin-top: 12px;
+}
+
+
+/* ===== 26 Aug 2026 - Change Password button ===== */
+
+.profile-secondary-button {
+    display: block;
+    width: 100%;
+    height: 43px;
+
+    margin-top: 8px;
+
+    border: 1.5px solid #cfe0d4;
+    border-radius: 11px;
+
+    background: #ffffff;
+    color: #247a45;
+
+    font-size: 14px;
+    font-weight: 700;
+    font-family: inherit;
+
+    cursor: pointer;
+}
+
+.profile-secondary-button:hover {
+    background: #f2f8f4;
+    border-color: #247a45;
+}
+
+/* =========================================================
+   FINAL MOBILE OPTIMIZATION
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+    /* ---------- HEADER ---------- */
+
+    header {
+        height: 62px;
+        padding: 0 10px;
+    }
+
+    .header-left {
+        gap: 8px;
+        min-width: 0;
+    }
+
+    .header-left h1 {
+        font-size: 20px;
+    }
+
+    .header-right {
+        gap: 5px;
+    }
+
+    .profile-button,
+    .logout-button {
+        padding: 7px 9px;
+        font-size: 11px;
+    }
+
+    .notification-button {
+        width: 34px;
+        height: 34px;
+        font-size: 15px;
+    }
+
+
+    /* ---------- MAIN ---------- */
+
+    .dashboard-content {
+        width: 100%;
+        margin-left: 0;
+        padding: 12px 10px 20px;
+    }
+
+
+    /* ---------- LOCATION ---------- */
+
+    .location {
+        padding: 10px 11px;
+        margin-bottom: 12px;
+
+        flex-direction: column;
+        align-items: stretch;
+        gap: 9px;
+    }
+
+    #locationButton {
+        width: 100%;
+    }
+
+
+    /* ---------- HEADINGS ---------- */
+
+    .section-heading {
+        align-items: flex-start;
+        gap: 8px;
+        margin-bottom: 8px;
+    }
+
+    .section-heading h2 {
+        font-size: 16px;
+    }
+
+    .market-heading-actions {
+        gap: 4px;
+    }
+
+    .market-heading-actions button {
+        padding: 6px 8px;
+        font-size: 10px;
+    }
+
+
+    /* ---------- MARKET PRICE CARDS ---------- */
+
+    .price-container {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+
+    .price-card {
+        min-height: 185px;
+        padding: 13px;
+    }
+
+    .price-card h3 {
+        font-size: 14px;
+    }
+
+    .price-card p {
+        font-size: 19px;
+    }
+
+
+    /* ---------- BEST PRICE ---------- */
+
+    .best-price-section {
+        padding: 12px;
+    }
+
+    .best-price-header h2 {
+        font-size: 17px;
+    }
+
+    .best-price-search {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+    }
+
+    .crop-select-wrapper {
+        width: 100%;
+    }
+
+    .best-price-section #cropSelect,
+    .best-price-section #priceButton {
+        width: 100%;
+        min-width: 0;
+    }
+
+
+    /* ---------- MARKET RESULT ---------- */
+
+    .market-info-grid,
+    .comparison-info,
+    .price-summary {
+        grid-template-columns: 1fr;
+    }
+
+    .best-market-card {
+        padding: 13px;
+    }
+
+    .best-market-title h2 {
+        font-size: 18px;
+    }
+
+    .market-info-item {
+        padding: 9px;
+    }
+
+    .net-return strong {
+        font-size: 20px;
+    }
+
+
+    /* ---------- COMPARISON ---------- */
+
+    .market-comparison-card {
+        padding: 11px;
+    }
+
+    .comparison-top {
+        gap: 7px;
+    }
+
+    .comparison-top h3 {
+        font-size: 14px;
+    }
+
+
+    /* ---------- PRICE TRACKING ---------- */
+
+    .price-tracking-card {
+        padding: 12px;
+    }
+
+    .price-tracking-card > h3 {
+        font-size: 16px;
+    }
+
+    .simple-chart {
+        height: 190px;
+    }
+
+
+    /* ---------- SELL CROP ---------- */
+
+    .sell-crop-card {
+        padding: 13px;
+    }
+
+    .sell-form-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    .form-field input,
+    .input-with-unit {
+        width: 100%;
+    }
+
+    .list-crop-button {
+        width: 100%;
+    }
+
+
+    /* ---------- LISTED CROPS ---------- */
+
+    #listedCropsSection {
+        width: 100%;
+        padding: 12px !important;
+    }
+
+    #listedCropsSection .listed-crops-heading {
+        align-items: flex-start !important;
+        gap: 8px;
+    }
+
+    #listedCropsSection .listed-crops-heading h2 {
+        font-size: 16px !important;
+    }
+
+    #listedCropsSection #viewAllListedCropsButton {
+        flex-shrink: 0;
+        min-width: 70px !important;
+        height: 30px !important;
+        padding: 0 9px !important;
+        font-size: 10px !important;
+    }
+
+    #listedCrops .shop-card {
+        grid-template-columns: 1fr 1fr;
+        gap: 7px;
+        padding: 10px !important;
+    }
+
+
+    /* ---------- BUY SEEDS ---------- */
+
+    #seedsContainer {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+
+    #seedsContainer .shop-card {
+        padding: 12px;
+    }
+
+    #seedsContainer .shop-card button {
+        width: auto;
+        min-width: 120px;
+        height: 34px;
+    }
+
+
+    /* ---------- CART / ORDERS ---------- */
+
+    #cartContainer .shop-card,
+    #ordersContainer .shop-card {
+        padding: 10px;
+    }
+
+    .order-header {
+        gap: 8px;
+    }
+
+    .order-header h3 {
+        font-size: 14px;
+    }
+
+    .order-status {
+        font-size: 9px;
+    }
+
+    .order-tracking {
+        gap: 2px;
+    }
+
+    .order-track-step {
+        font-size: 8px;
+    }
+
+    .order-track-dot {
+        width: 23px;
+        height: 23px;
+        font-size: 9px;
+    }
+
+
+    /* ---------- BUYERS / SHOPS ---------- */
+
+    .shop-card,
+    .buyer-card {
+        padding: 11px;
+    }
+
+    .buyer-details {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-buyer-button {
+        width: 100%;
+    }
+
+
+    /* ---------- MAPS ---------- */
+
+    #farmMap {
+        height: 260px;
+    }
+
+    #shopsMap,
+    #buyersMap {
+        height: 240px;
+    }
+
+
+    /* ---------- FARMING LANDS ---------- */
+
+    .land-search-row {
+        flex-direction: column;
+    }
+
+    #searchLandButton {
+        width: 100%;
+    }
+
+    .land-summary {
+        grid-template-columns: 1fr;
+    }
+
+    .farm-map-header {
+        align-items: flex-start;
+    }
+
+    .farm-map-card .land-controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .land-control-actions {
+        width: 100%;
+        flex-wrap: wrap;
+    }
+
+    .land-control-button {
+        flex: 1;
+        min-width: 100px;
+    }
+
+    .land-details {
+        grid-template-columns: 1fr;
+    }
+
+    .land-card-actions {
+        flex-direction: column;
+    }
+
+    .land-card-actions button {
+        width: 100%;
+    }
+
+
+    /* ---------- DRAWER ---------- */
+
+    #profileSection,
+    #notificationSection {
+        width: 100%;
+        max-width: 100%;
+        padding: 22px 16px;
+    }
+
+
+    /* ---------- PROFILE ---------- */
+
+    .profile-header {
+        margin-bottom: 18px;
+    }
+
+    .profile-header h2 {
+        font-size: 19px;
+    }
+
+    .profile-info-card {
+        padding: 14px;
+    }
+
+    .profile-stats {
+        gap: 5px;
+    }
+
+    .profile-stat {
+        padding: 8px 4px;
+    }
+
+    .profile-stat strong {
+        font-size: 17px;
+    }
+
+
+    /* ---------- NOTIFICATIONS ---------- */
+
+    .notification-item {
+        width: 100%;
+    }
+
+
+    /* ---------- MODALS ---------- */
+
+    .confirm-overlay,
+    .converter-overlay {
+        padding: 12px;
+    }
+
+    .confirm-box,
+    .converter-box {
+        max-width: 100%;
+    }
+
+
+    /* ---------- FOOTER ---------- */
+
+    footer {
+        margin-left: 0;
+        padding: 12px 8px;
+    }
+}
+/* =========================================================
+   MOBILE SIDEBAR — SLIDE DRAWER
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+    .sidebar {
+        display: block;
+
+        position: fixed;
+        top: 62px;
+        left: 0;
+
+        width: 250px;
+        height: calc(100vh - 62px);
+
+        padding: 18px 12px;
+
+        background: #ffffff !important;
+        border-right: 1px solid #e1e7e9;
+
+        z-index: 3000;
+
+        transform: translateX(-100%);
+        transition: transform 0.25s ease;
+
+        overflow-y: auto;
+
+        box-shadow: 5px 0 18px rgba(0, 0, 0, 0.12);
+    }
+
+    .sidebar.mobile-sidebar-open {
+        transform: translateX(0);
+    }
+
+    .dashboard-content {
+        width: 100%;
+        margin-left: 0;
+    }
+}
+
+.mobile-menu-button {
+    display: none;
+}
+
+@media (max-width: 700px) {
+    .mobile-menu-button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        width: 34px;
+        height: 34px;
+
+        border: none;
+        border-radius: 7px;
+
+        background: #edf6f0;
+        color: #247a45;
+
+        font-size: 20px;
+        cursor: pointer;
+    }
+}
+@media (max-width: 700px) {
+    .header-left p {
+        display: none;
+    }
+}
+@media (max-width: 700px) {
+
+    .header-left {
+        gap: 6px;
+        flex: 1;
+        min-width: 0;
+    }
+
+    .header-left h1 {
+        font-size: 17px;
+        white-space: nowrap;
+    }
+
+    .header-right {
+        flex-shrink: 0;
+    }
+}
+
+/* =========================================================
+   FINAL SOLID UI — GLASS EFFECT REMOVED
+   ========================================================= */
+
+.location,
+.market-search,
+#listedCropsSection,
+.best-market-card,
+.market-comparison-card,
+.price-tracking-card,
+#sellCropForm,
+.shop-card,
+.buyer-card,
+.farm-card,
+.land-card,
+.order-card,
+.profile-card,
+#profileSection,
+#notificationSection,
+.converter-box,
+.modal-content {
+    background: #ffffff !important;
+}
+
+/* Keep nested content solid as well */
+.market-info-item,
+.comparison-item,
+.price-summary > div,
+.listed-empty,
+.listed-crop-card,
+.listed-crop-detail,
+.farm-land-card,
+.order-item,
+.notification-item {
+    background: #f5f8f5 !important;
+}
+
+/* Price cards use their crop image, not a glass background */
+.price-card {
+}
+
+/* Solid, clean borders and shadows */
+.location,
+.market-search,
+#listedCropsSection,
+.best-market-card,
+.market-comparison-card,
+.price-tracking-card,
+#sellCropForm,
+.shop-card,
+.buyer-card,
+.farm-card,
+.land-card,
+.order-card,
+.profile-card {
+    border-color: #e1e8e3;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
